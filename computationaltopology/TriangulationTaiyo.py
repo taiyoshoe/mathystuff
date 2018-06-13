@@ -14,8 +14,8 @@ Created on Sun Oct 25 17:55:02 2015
 class triangles:# this describes the class of triangulations
     def __init__(self, faces, vertices): #initializes the triangulation
         self.tri=[face for face in faces]#Generates list of triangles 
-        self.orient=[None for face in faces] #Generates list of oreintations
-                                             #for each triangle
+        self.orient=[None for face in faces] #Generates list of orientations for each triangle
+
         
     def ENEXT(self,A): #gives the next rotation, just as in the text.
                        #A will be [m,i], where m is mu the triangle and i is 

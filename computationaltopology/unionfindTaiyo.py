@@ -10,15 +10,15 @@ Created on Sat Oct  3 16:44:16 2015
 #union-find data structure
 #finds connected components
 
-#adjacency list is seperated by line breaks but could e done differently
+#adjacency list is seperated by line breaks but could be done differently
 # This first part just opens and loads a graph from a file
 with open('graphextaiyo.txt') as inputfile:
     adjArray = []
     for line in inputfile:
         line = line.strip().split(" ") # to deal with any blanks, .split(",") if seperated by "," etc
         adjArray.append(line)
-vertexNames={}# this is a dictionary to store the possibly complex names of vertices in the graph file as names like 0,1,2,...,n for simplicity.
-keys={} #this is dictionary to translate from the vertex names 0,1,2,...,n, back to the ones given in the graph
+vertexNames={}# this is a dictionary to store the names of vertices that may be strings in the graph file as names like 0,1,2,...,n for simplicity.
+keys={} #this is a dictionary to translate from the vertex names 0,1,2,...,n, back to the ones given in the graph
 
 #this builds the array setList that will contain all the information about parents, roots, and size etc.
 setList=[]
@@ -28,8 +28,8 @@ for i,x in enumerate(adjArray):
     setList.append([i,i,0,i]);
     vertexNames[x[0]]=i
     keys[i]=x[0]
-    
-#this store the number of roots, the code stops if roots=1, since that means there is only one connected component.
+
+#this stores the number of roots, the code stops if roots=1, since that means there is only one connected component.
 roots=len(setList)
 
 # this will be used to list the components at the end
@@ -45,8 +45,8 @@ def find(i):
     else:
         parent=find(parent)
         return parent
-        
-#finds two vertices and if they are in the same set unions their sets.   
+
+#finds two vertices and if they are in the same set unions their sets.
 def union(i,j):
     iRoot=setList[find(i)]# finds location of i
     jRoot=setList[find(j)]# finds location of j
@@ -61,7 +61,7 @@ def union(i,j):
             iRoot[1]=jRoot[0]
         elif iRoot[2]>jRoot[2]:
             jRoot[1]=iRoot[0]
-        else:        
+        else:
             jRoot[1]=iRoot[0]
             jRoot[3]=iRoot[0]
             iRoot[2]+=1
